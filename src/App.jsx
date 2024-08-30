@@ -14,7 +14,7 @@ function App() {
 
   const search = async (q) => {
     try {
-      const response = await fetch('http://localhost:5500/?' + new URLSearchParams({ q }));
+      const response = await fetch('https://react-projects-front.vercel.app/?' + new URLSearchParams({ q }));
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
