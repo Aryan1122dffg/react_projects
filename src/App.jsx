@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.css';
+import debounce from 'lodash.debounce'; // Install lodash.debounce
 
 function App() {
   const [animals, setAnimals] = useState([]);
@@ -12,9 +13,9 @@ function App() {
     }
   }, []);
 
-  const search = async (q) => {
+  const search = useCallback(debounce(async (q) => {
     try {
-      const response = await fetch('http://localhost:5500/?' + new URLSearchParams({ q }));
+      const response = await fetch('https://react-projects-backe.vercel.app/?' + new URLSearchParams({ q }));
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -24,7 +25,7 @@ function App() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };
+  }, 500), []);
 
   const handleInputChange = (e) => {
     const q = e.target.value;
@@ -48,7 +49,7 @@ function App() {
           <Animal key={animal.id} {...animal} />
         ))}
 
-        {animals.length === 0 && 'No animals found'}
+        {animals.length === 0 && query && 'No animals found'}
       </ul>
     </main>
   );
