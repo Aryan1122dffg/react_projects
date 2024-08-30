@@ -26,4 +26,4 @@ app.get('/', (req, res) => {
     }
 });
 
-app.listen(5500, () => console.log('Listening on port http://localhost:5500/'));
+app.listen(() => console.log('Listening on port http://localhost:5500/'));
