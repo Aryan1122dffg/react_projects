@@ -3,7 +3,7 @@ import cors from 'cors';
 import Chance from 'chance';
 
 const app = express();
-app.use(cors());
+app.use(cors()); // Allow all origins by default
 app.use(express.json());
 
 const chance = new Chance();
@@ -26,4 +26,5 @@ app.get('/', (req, res) => {
     }
 });
 
-app.listen(() => console.log('Listening on port http://localhost:5500/'));
+const PORT = 5500; // Explicitly define the port
+app.listen(PORT, () => console.log(`Listening on port http://localhost:${PORT}/`));
