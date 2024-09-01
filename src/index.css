@@ -29,7 +29,7 @@ warning in VSCode,change the css.lint.unknownAtRules setting to ignore. */
 *::before,
 *::after {
   margin: 0;
-  padding: 0;
+  padding: 29px;
   box-sizing: border-box;
 }
 
