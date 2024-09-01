@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.css';
-import debounce from 'lodash.debounce'; // Install lodash.debounce
+import debounce from 'lodash.debounce'; // Ensure lodash.debounce is installed
 
 function App() {
   const [animals, setAnimals] = useState([]);
@@ -15,7 +15,9 @@ function App() {
 
   const search = useCallback(debounce(async (q) => {
     try {
-      const response = await fetch('https://react-projects-backe.vercel.app/?' + new URLSearchParams({ q }));
+      const response = await fetch('https://react-projects-backe.vercel.app/?' + new URLSearchParams({ q }), {
+        mode: 'cors', // Ensure CORS is handled
+      });
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -24,6 +26,7 @@ function App() {
       localStorage.setItem('lastQuery', q);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setAnimals([]); // Clear animals on error
     }
   }, 500), []);
 
