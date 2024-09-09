@@ -6,7 +6,7 @@
   "main": "index.js",
   "description": "",
   "scripts": {
-    "build": "[my-framework] build --output public"
+    "build": "[my-framework] build --output public",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
